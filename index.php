@@ -1,19 +1,14 @@
 <?php
 
 ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 
 include_once ("config.php");
 include_once ('model.php');
 
-//$conn = mysqli_connect($host, $user, $password, $database);
-//$conn = mysqli_connect("176.107.190.204", "della", "fgTrdBV64Dsaq", "della", "3306");
-// подключаемся к серверу
-//$conn = mysqli_connect("193.42.104.240", "della", "fgTrdBV64Dsaq", "della", "3307");
 $conn = mysqli_connect($host, $user, $password, $database)
-or die("Ошибка " . mysqli_error($conn));
-var_dump($conn, $host, $user, $password, $database);
+or die("Database connect error: " . mysqli_error($conn));
 
 if (isset($_GET['offset']))
     $offset = $_GET['offset'];
@@ -23,7 +18,7 @@ $shipments = getShipmentByParams($conn, $_GET, $offset);
 
 $shipmentsHTML = createShipmentsHTML($conn, $shipments);
 
-//$conn->close();
+$conn->close();
 
 function nextPageBtn($offset) {
 
