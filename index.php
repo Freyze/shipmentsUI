@@ -116,15 +116,15 @@ function createShipmentsHTML($conn, $lastShipments) {
     <tr data-id='{$shipmentInfo["shipment_id"]}'>
         <td>{$shipmentInfo["shipment_id"]}</td>
         <td>{$shipmentInfo["request_id"]}</td>
-        <td>$date<br>$time</td>
+        <td style='min-width: 120px;'>$date<br>$time</td>
         <td>{$shipmentInfo["city_from"]}<br>{$shipmentInfo["area_from"]}</td>
         <td>{$shipmentInfo["city_to"]}<br>{$shipmentInfo["area_to"]}</td>
         <td>{$shipmentInfo["content_name"]} $contentCharacteristic</td>
         <td>{$shipmentInfo["truck_type"]}</td>
-        <td>{$shipmentInfo["payment_type"]}<br>Цена клиента: {$shipmentInfo["price"]}<br>Наша цена: {$shipmentInfo["lardi_price"]}</td>
-        <td>$contactsHTML<br>{$shipmentInfo["author_name"]}<br>{$shipmentInfo["company_name"]}<br></td>
+        <td>{$shipmentInfo["payment_type"]}  {$shipmentInfo["payment_time"]}<br>Цена клиента: {$shipmentInfo["price"]}<br>Наша цена: {$shipmentInfo["lardi_price"]}</td>
+        <td style='max-width: 200px;'>$contactsHTML<br>{$shipmentInfo["author_name"]}<br>{$shipmentInfo["company_name"]}<br></td>
         <td><textarea class='note' oninput='note(this)'>{$shipmentInfo["notation"]}</textarea></td>
-        <td><div class='pointer hover-darkred' onclick='setRed(this)'>Удалить</div><div class='pointer hover-darkred' onclick='setGreen(this)'>В работе</div></td>
+        <td style='min-width: 70px;'><div class='pointer hover-darkred' onclick='setRed(this)'>Удалить</div><div class='pointer hover-darkred' onclick='setGreen(this)'>В работе</div></td>
     </tr>";
 
 
