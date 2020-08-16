@@ -54,18 +54,28 @@ function getShipmentByParams($conn, $inputGet, $offset) {
 
     }
 
+    if (!isEmpty($_GET['phone'])) {
+
+        if (strlen($selectWhereSQL) > 3) $selectWhereSQL .= " AND ";
+        $phone = $conn->real_escape_string($inputGet['phone']);
+        $selectWhereSQL .= " REPLACE(REPLACE(`phone`, '(', ''), ')', '') LIKE '%$phone%' ";
+
+    }
+
     // Отображаем всё, если нет параметров для поиска
     if (empty($selectWhereSQL)) {
         $selectWhereSQL = "1";
     }
 
     $selectSQL = "
-                SELECT * FROM `shipments`
+                SELECT SQL_NO_CACHE `shipments`.*, `shipments_info`.*, `phones`.`phone` FROM `shipments`
                 INNER JOIN `shipments_info` ON `shipments`.`id` = `shipments_info`.`shipment_id`
+                LEFT JOIN `phones` ON `shipments`.`id` = `phones`.`shipment_id`
                 WHERE $selectWhereSQL AND `parser_status` != 4 AND `shipment_status` != 3
+                GROUP BY `shipment_id`
                 ORDER BY `shipments`.`id` DESC
                 LIMIT $offset, 25";
-//    echo $selectSQL;
+    echo $selectSQL;
     $selectResult = $conn->query($selectSQL);
 
     if ($selectResult) {

@@ -1,8 +1,10 @@
 <?php
 
+include_once ('config.php');
+
 if (isset($_POST['id'])) {
 
-    $conn = mysqli_connect($host, $user, $password, $password, $port);
+    $conn = mysqli_connect($host, $user, $password, $database, $port);
 
     if (isset($_POST['note'])) {
         if (updateNotation($conn, $_POST['id'], $_POST['note'])) {

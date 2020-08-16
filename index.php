@@ -1,8 +1,8 @@
 <?php
 
 ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 
 include_once ("config.php");
 include_once ('model.php');
@@ -109,11 +109,11 @@ function createShipmentsHTML($conn, $lastShipments) {
             $date = "{$shipmentInfo["date_from"]} - {$shipmentInfo["date_to"]}";
         }
 
-        var_dump($shipmentInfo["shipment_status"]);
-        $deleted = ($shipmentInfo["shipment_status"] == 3 || $shipmentInfo["parser_status"] == 4) ? 'class="deleted"' : '';
+//        var_dump($shipmentInfo["shipment_status"]);
+//        $deleted = ($shipmentInfo["shipment_status"] == 3 || $shipmentInfo["parser_status"] == 4) ? 'class="deleted"' : '';
 
         $html .= "
-    <tr $deleted data-id='{$shipmentInfo["shipment_id"]}'>
+    <tr data-id='{$shipmentInfo["shipment_id"]}'>
         <td>{$shipmentInfo["shipment_id"]}</td>
         <td>{$shipmentInfo["request_id"]}</td>
         <td>$date<br>$time</td>
@@ -121,7 +121,7 @@ function createShipmentsHTML($conn, $lastShipments) {
         <td>{$shipmentInfo["city_to"]}<br>{$shipmentInfo["area_to"]}</td>
         <td>{$shipmentInfo["content_name"]} $contentCharacteristic</td>
         <td>{$shipmentInfo["truck_type"]}</td>
-        <td>Цена клиента: {$shipmentInfo["price"]}<br>Наша цена: {$shipmentInfo["lardi_price"]}</td>
+        <td>{$shipmentInfo["payment_type"]}<br>Цена клиента: {$shipmentInfo["price"]}<br>Наша цена: {$shipmentInfo["lardi_price"]}</td>
         <td>$contactsHTML<br>{$shipmentInfo["author_name"]}<br>{$shipmentInfo["company_name"]}<br></td>
         <td><textarea class='note' oninput='note(this)'>{$shipmentInfo["notation"]}</textarea></td>
         <td><div class='pointer hover-darkred' onclick='setRed(this)'>Удалить</div><div class='pointer hover-darkred' onclick='setGreen(this)'>В работе</div></td>
