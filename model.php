@@ -75,7 +75,7 @@ function getShipmentByParams($conn, $inputGet, $offset) {
                 GROUP BY `shipment_id`
                 ORDER BY `shipments`.`id` DESC
                 LIMIT $offset, 25";
-    echo $selectSQL;
+//    echo $selectSQL;
     $selectResult = $conn->query($selectSQL);
 
     if ($selectResult) {
