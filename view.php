@@ -56,6 +56,10 @@
         background-color: rgb(245, 220, 220);
     }
 
+    .in-job {
+        background-color: rgb(193, 255, 201);
+    }
+
 </style>
 
 <script>
@@ -65,7 +69,7 @@
             method: 'POST',
             data: {id: id, status: type},
             success: function (data) {
-                if (data.code !== 0) {
+                if (data.code !== "true") {
                     alert('Произошла ошибка. Попробуйте перезагрузить страницу.')
                 }
             },
@@ -80,17 +84,24 @@
         var id = table.getAttribute('data-id');
         if (confirm('Удалить ID ' + id + '?')){
             $(table).css('background-color', '#f5dcdc');
-            setType(id, 3)
+            setType(id, 4)
         }
     }
 
     function setGreen(el) {
-        var table = $(el.parentElement.parentElement);
-        var id = table.attr('data-id');
-        table.css('background-color', '#c1ffc9');
-        let s = `${table.data('date')}, ${table.data('id')}, ${table.data('city-from')} — ${table.data('city-to')}, ${table.data('cargo')}`;
+        let tr = $(el.parentElement.parentElement);
+        tr.css('background-color', '#c1ffc9');
+
+        let id = tr.attr('data-id');
+        console.log(id);
+        let cityFrom = tr.attr('data-city-from');
+        let cityTo = tr.attr('data-city-to');
+        let date = tr.attr('data-date');
+        let content = tr.attr('data-content');
+
+        let s = `${date}, ${id}, ${cityFrom} — ${cityTo}, ${content}`;
         copy(s.replace(/<.*>/, " —"));
-        setType(id, 2)
+        setType(id, 6)
     }
 
     function setWhite(el) {
@@ -117,6 +128,16 @@
                 alert('Произошла ошибка. Попробуйте перезагрузить страницу. Возможно превышен лимит нотации.')
             }
         })
+    }
+
+    function copy(text) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val(text);
+        $temp.select();
+        document.execCommand("copy");
+        $temp.remove();
+        // console.log('Тест скопирован!');
     }
 </script>
 <body>

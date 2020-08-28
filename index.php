@@ -16,7 +16,7 @@ else $offset = 0;
 
 $shipments = getShipmentByParams($conn, $_GET, $offset);
 
-$shipmentsHTML = createShipmentsHTML($conn, $shipments);
+$shipmentsHTML = createShipmentsHTML($shipments);
 
 $conn->close();
 
@@ -44,7 +44,7 @@ function previousPageBtn($offset) {
 
 }
 
-function createShipmentsHTML($conn, $lastShipments) {
+function createShipmentsHTML($lastShipments) {
 
     if (isEmpty($lastShipments)) return false;
 
@@ -90,20 +90,21 @@ function createShipmentsHTML($conn, $lastShipments) {
         }
 
 //        var_dump($shipmentInfo["shipment_status"]);
-//        $deleted = ($shipmentInfo["shipment_status"] == 3 || $shipmentInfo["parser_status"] == 4) ? 'class="deleted"' : '';
+        $deleted = ($shipmentInfo["shipment_status"] == 3 || $shipmentInfo["parser_status"] == 4) ? ' deleted ' : '';
+        $inJobStatus = ($shipmentInfo["shipment_status"] == 6) ? ' in-job ' : '';
 
         $html .= "
-    <tr data-id='{$shipmentInfo["shipment_id"]}'>
-        <td>{$shipmentInfo["shipment_id"]}</td>
-        <td style='min-width: 120px;'>$date<br>$time</td>
-        <td>{$shipmentInfo["city_from"]}<br>{$shipmentInfo["area_from"]}</td>
-        <td>{$shipmentInfo["city_to"]}<br>{$shipmentInfo["area_to"]}</td>
-        <td>{$shipmentInfo["content_name"]} $contentCharacteristic</td>
-        <td>{$shipmentInfo["truck_type"]}</td>
-        <td>{$shipmentInfo["payment_type"]}  {$shipmentInfo["payment_time"]}<br>Цена клиента: {$shipmentInfo["price"]}<br>Наша цена: {$shipmentInfo["lardi_price"]}</td>
-        <td style='max-width: 200px;'><a href='https://della.ua{$shipmentInfo["shipment_url"]}' target='_blank'>Заявка</a><br></td>
-        <td><textarea class='note' oninput='note(this)'>{$shipmentInfo["notation"]}</textarea></td>
-        <td style='min-width: 70px;'><div class='pointer hover-darkred' onclick='setRed(this)'>Удалить</div><div class='pointer hover-darkred' onclick='setGreen(this)'>В работе</div></td>
+    <tr data-id='{$shipmentInfo["shipment_id"]}' data-city-from='{$shipmentInfo["city_from"]}' data-city-to='{$shipmentInfo["city_to"]}' data-content='{$shipmentInfo["content_name"]}' data-date='{$date}'>
+        <td class='$deleted $inJobStatus'>{$shipmentInfo["shipment_id"]}</td>
+        <td class='$deleted $inJobStatus'>$date<br>$time</td>
+        <td class='$deleted $inJobStatus'>{$shipmentInfo["city_from"]}<br>{$shipmentInfo["area_from"]}</td>
+        <td class='$deleted $inJobStatus'>{$shipmentInfo["city_to"]}<br>{$shipmentInfo["area_to"]}</td>
+        <td class='$deleted $inJobStatus'>{$shipmentInfo["content_name"]} $contentCharacteristic</td>
+        <td class='$deleted $inJobStatus'>{$shipmentInfo["truck_type"]}</td>
+        <td class='$deleted $inJobStatus'>{$shipmentInfo["payment_type"]}  {$shipmentInfo["payment_time"]}<br>Цена клиента: {$shipmentInfo["price"]}<br>Наша цена: {$shipmentInfo["lardi_price"]}</td>
+        <td class='$deleted $inJobStatus'><a href='https://della.ua{$shipmentInfo["shipment_url"]}' target='_blank'>Заявка</a><br></td>
+        <td class='$deleted $inJobStatus'><textarea class='note' oninput='note(this)'>{$shipmentInfo["notation"]}</textarea></td>
+        <td class='$deleted $inJobStatus'><div class='pointer hover-darkred' onclick='setRed(this)'>Удалить</div><div class='pointer hover-darkred' onclick='setGreen(this)'>В работе</div></td>
     </tr>";
 
 
