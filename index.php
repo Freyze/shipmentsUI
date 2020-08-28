@@ -90,7 +90,7 @@ function createShipmentsHTML($lastShipments) {
         }
 
 //        var_dump($shipmentInfo["shipment_status"]);
-        $deleted = ($shipmentInfo["shipment_status"] == 3 || $shipmentInfo["parser_status"] == 4) ? ' deleted ' : '';
+        $deleted = ($shipmentInfo["shipment_status"] == 4 || $shipmentInfo["parser_status"] == 4) ? ' deleted ' : '';
         $inJobStatus = ($shipmentInfo["shipment_status"] == 6) ? ' in-job ' : '';
 
         $html .= "

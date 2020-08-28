@@ -69,7 +69,7 @@
             method: 'POST',
             data: {id: id, status: type},
             success: function (data) {
-                if (data.code !== "true") {
+                if (data !== "true") {
                     alert('Произошла ошибка. Попробуйте перезагрузить страницу.')
                 }
             },
@@ -82,18 +82,21 @@
     function setRed(el) {
         var table = el.parentElement.parentElement;
         var id = table.getAttribute('data-id');
+
         if (confirm('Удалить ID ' + id + '?')){
-            $(table).css('background-color', '#f5dcdc');
+            $(el.parentElement.parentElement).children().removeClass("in-job");
+            $(el.parentElement.parentElement).children().addClass("deleted");
             setType(id, 4)
         }
     }
 
     function setGreen(el) {
         let tr = $(el.parentElement.parentElement);
-        tr.css('background-color', '#c1ffc9');
+        $(el.parentElement.parentElement).children().removeClass("deleted");
+        $(el.parentElement.parentElement).children().addClass("in-job");
+
 
         let id = tr.attr('data-id');
-        console.log(id);
         let cityFrom = tr.attr('data-city-from');
         let cityTo = tr.attr('data-city-to');
         let date = tr.attr('data-date');
