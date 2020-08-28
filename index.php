@@ -52,27 +52,6 @@ function createShipmentsHTML($conn, $lastShipments) {
 
     foreach ($lastShipments as $shipmentInfo) {
 
-        $contacts = getContacts($conn, $shipmentInfo["shipment_id"]);
-
-        $contactsHTML = '';
-        if (!isEmpty($contacts)) {
-
-            foreach ($contacts as $contact) {
-
-                if (stripos($contact, "+") !== false) {
-
-                    $globalPhone = $contact;
-                    $phoneReplaces = array("(", ")", "+38");
-                    $contact = str_replace($phoneReplaces, "", $contact);
-
-                    $contact = '<a href="tel:'.$globalPhone.'">'.$contact.'</a>';
-                }
-
-                $contactsHTML .= "<br>$contact";
-            }
-
-        }
-
         $contentCharacteristic = '';
 
         if (!isEmpty($shipmentInfo["min_mass"])) {
@@ -123,7 +102,7 @@ function createShipmentsHTML($conn, $lastShipments) {
         <td>{$shipmentInfo["content_name"]} $contentCharacteristic</td>
         <td>{$shipmentInfo["truck_type"]}</td>
         <td>{$shipmentInfo["payment_type"]}  {$shipmentInfo["payment_time"]}<br>Цена клиента: {$shipmentInfo["price"]}<br>Наша цена: {$shipmentInfo["lardi_price"]}</td>
-        <td style='max-width: 200px;'>$contactsHTML<br>{$shipmentInfo["author_name"]}<br>{$shipmentInfo["company_name"]}<br></td>
+        <td style='max-width: 200px;'><a href='{$shipmentInfo["shipment_url"]}' target='_blank'>Заявка</a><br></td>
         <td><textarea class='note' oninput='note(this)'>{$shipmentInfo["notation"]}</textarea></td>
         <td style='min-width: 70px;'><div class='pointer hover-darkred' onclick='setRed(this)'>Удалить</div><div class='pointer hover-darkred' onclick='setGreen(this)'>В работе</div></td>
     </tr>";
