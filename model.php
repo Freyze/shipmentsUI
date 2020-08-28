@@ -71,7 +71,7 @@ function getShipmentByParams($conn, $inputGet, $offset) {
                 SELECT SQL_NO_CACHE `shipments`.*, `shipments_info`.*, `phones`.`phone` FROM `shipments`
                 INNER JOIN `shipments_info` ON `shipments`.`id` = `shipments_info`.`shipment_id`
                 LEFT JOIN `phones` ON `shipments`.`id` = `phones`.`shipment_id`
-                WHERE $selectWhereSQL AND `parser_status` != 4 AND `shipment_status` != 3
+                WHERE $selectWhereSQL
                 GROUP BY `shipment_id`
                 ORDER BY `shipments`.`id` DESC
                 LIMIT $offset, 25";
@@ -94,6 +94,7 @@ function getShipmentByParams($conn, $inputGet, $offset) {
     return false;
 
 }
+
 
 function getContacts($conn, $shipmentId) {
 

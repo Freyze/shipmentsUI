@@ -99,6 +99,7 @@ function createShipmentsHTML($conn, $lastShipments) {
             $contentCharacteristic .= " Выс:".$shipmentInfo["content_height"];
         }
 
+        $time = '';
         if (!isEmpty($shipmentInfo["add_time"]) && !isEmpty($shipmentInfo["edit_time"])) {
             $time = "<br>Разм. {$shipmentInfo["add_time"]}<br>Изм. {$shipmentInfo["edit_time"]}";
         }
