@@ -134,7 +134,6 @@
 <table>
     <tr>
         <th>ID</th>
-        <th>Della ID</th>
         <th>Дата</th>
         <th>Откуда</th>
         <th>Куда</th>

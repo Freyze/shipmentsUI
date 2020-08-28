@@ -95,14 +95,13 @@ function createShipmentsHTML($conn, $lastShipments) {
         $html .= "
     <tr data-id='{$shipmentInfo["shipment_id"]}'>
         <td>{$shipmentInfo["shipment_id"]}</td>
-        <td>{$shipmentInfo["request_id"]}</td>
         <td style='min-width: 120px;'>$date<br>$time</td>
         <td>{$shipmentInfo["city_from"]}<br>{$shipmentInfo["area_from"]}</td>
         <td>{$shipmentInfo["city_to"]}<br>{$shipmentInfo["area_to"]}</td>
         <td>{$shipmentInfo["content_name"]} $contentCharacteristic</td>
         <td>{$shipmentInfo["truck_type"]}</td>
         <td>{$shipmentInfo["payment_type"]}  {$shipmentInfo["payment_time"]}<br>Цена клиента: {$shipmentInfo["price"]}<br>Наша цена: {$shipmentInfo["lardi_price"]}</td>
-        <td style='max-width: 200px;'><a href='https://della.ua/{$shipmentInfo["shipment_url"]}' target='_blank'>Заявка</a><br></td>
+        <td style='max-width: 200px;'><a href='https://della.ua{$shipmentInfo["shipment_url"]}' target='_blank'>Заявка</a><br></td>
         <td><textarea class='note' oninput='note(this)'>{$shipmentInfo["notation"]}</textarea></td>
         <td style='min-width: 70px;'><div class='pointer hover-darkred' onclick='setRed(this)'>Удалить</div><div class='pointer hover-darkred' onclick='setGreen(this)'>В работе</div></td>
     </tr>";
