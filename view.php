@@ -153,7 +153,7 @@
     <input type="text" placeholder="Область куда" style="width: 100%;" name="area-to">
 <!--    <input type="text" placeholder="Телефон" style="width: 100%;" name="phone">-->
 <!--    <input type="text" placeholder="Компания" style="width: 100%;" name="company-name">-->
-    <a href="index.php"><button style="width: 100%;">Сбросить</button></a>
+    <a style="width: 100%;" href="index.php"><button style="width: 100%; height: 100%">Сбросить</button></a>
     <button type="submit" style="width: 100%;">Поиск</button>
 </form>
 <table>
