@@ -96,30 +96,3 @@ function getShipmentByParams($conn, $inputGet, $offset) {
     return false;
 
 }
-
-
-function getContacts($conn, $shipmentId) {
-
-    if (isEmpty($conn) || isEmpty($shipmentId)) return false;
-
-    $shipmentId = $conn->real_escape_string($shipmentId);
-
-    $selectSQL = "SELECT `phone` as `contact_info` FROM `phones` WHERE `shipment_id` = $shipmentId 
-                    UNION SELECT `email` as `contact_info` FROM `emails` WHERE `shipment_id` = $shipmentId";
-    $selectResult = $conn->query($selectSQL);
-
-    if ($selectResult) {
-        if ($selectResult->num_rows > 0) {
-
-            $result = array();
-
-            while($row = $selectResult->fetch_row()) {
-                array_push($result, $row[0]);
-            }
-            return $result;
-
-        }
-    }
-    return false;
-
-}
