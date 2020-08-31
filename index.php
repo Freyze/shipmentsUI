@@ -101,7 +101,7 @@ function createShipmentsHTML($lastShipments) {
         <td class='$deleted $inJobStatus'>$date<br>$time</td>
         <td class='$deleted $inJobStatus'>{$shipmentInfo["city_from"]}<br>{$shipmentInfo["area_from"]}</td>
         <td class='$deleted $inJobStatus'>{$shipmentInfo["city_to"]}<br>{$shipmentInfo["area_to"]}</td>
-        <td class='$deleted $inJobStatus'>{$shipmentInfo["content_name"]}$contentCharacteristic{$shipmentInfo["content_info"]}</td>
+        <td class='$deleted $inJobStatus'>{$shipmentInfo["content_name"]}$contentCharacteristic {$shipmentInfo["content_info"]}</td>
         <td class='$deleted $inJobStatus'>{$shipmentInfo["truck_type"]}<br>{$shipmentInfo["loading_type"]}</td>
         <td class='$deleted $inJobStatus'>{$shipmentInfo["payment_type"]}  {$shipmentInfo["payment_time"]}<br>Цена клиента: {$shipmentInfo["price"]}<br>Наша цена: {$shipmentInfo["lardi_price"]}</td>
         <td class='$deleted $inJobStatus'><a href='https://della.ua{$shipmentInfo["shipment_url"]}' target='_blank'>Заявка</a><br></td>
