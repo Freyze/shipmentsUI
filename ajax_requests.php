@@ -45,7 +45,7 @@ function updateShipmentStatus($conn, $shipmentId, $statusId) {
     $shipmentId = $conn->real_escape_string($shipmentId);
     $statusId = $conn->real_escape_string($statusId);
 
-    $updateSQL = "UPDATE `shipments` SET `shipment_status` = '$statusId' WHERE `id`='$shipmentId'";
+    $updateSQL = "UPDATE `shipments` SET `parser_status` = '$statusId' WHERE `id`='$shipmentId'";
     $updateResult = $conn->query($updateSQL);
 
     if ($updateResult)
