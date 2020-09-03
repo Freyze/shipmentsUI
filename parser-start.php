@@ -9,7 +9,7 @@
     <br />
     <label>Start url</label>
     <br />
-    <input type="text" name="business-id">
+    <input type="text" name="business-id" size="150" required>
     <br />
     <input type="checkbox" name="rewrite-files" value="enable"> Исключить НДС
     <br />
