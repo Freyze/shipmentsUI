@@ -71,6 +71,7 @@ if (isset($_POST['start-url'])) {
     sleep(5);
 
     startApi();
+    
 }
 
 function startParser($url) {
@@ -80,7 +81,8 @@ function startParser($url) {
     $content = 'Parser is worked';
     file_put_contents(PARSER_PATH.PARSER_LOCK_FILE, $content);
 
-    echo shell_exec('node index.js '.$url);
+    echo "Starting parser...";
+    shell_exec('node index.js '.$url);
 
 }
 
@@ -91,5 +93,7 @@ function startApi() {
     $content = 'API is worked';
     file_put_contents(API_PATH.API_LOCK_FILE, $content);
 
-    echo shell_exec('php main.php');
+    echo "Starting api...";
+    shell_exec('php main.php');
+
 }
