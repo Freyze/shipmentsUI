@@ -68,15 +68,15 @@ if (isset($_POST['stop'])) {
 
 if (isset($_POST['start-url'])) {
 
-    if (file_exists(PARSER_PATH.PARSER_LOCK_FILE)) exit("Парсер уже запущен! Сначала его необходимо остановить!");
-    if (file_exists(API_PATH.API_LOCK_FILE)) exit("Залив на API уже запущен! Сначала его необходимо остановить!");
+    if (file_exists(PARSER_PATH.PARSER_LOCK_FILE)) exit("<br>Парсер уже запущен! Сначала его необходимо остановить!");
+    if (file_exists(API_PATH.API_LOCK_FILE)) exit("<br>Залив на API уже запущен! Сначала его необходимо остановить!");
 
     // https://regex101.com/r/KD74tO/1
     $urlPattern = '/della\.ua\/search\/[^\.]+[0-9]+l100\.html/';
     if (preg_match($urlPattern, $_POST['start-url'])) {
         startParser($_POST['start-url']);
     } else {
-        exit("Invalid start url!");
+        exit("<br>Invalid start url!");
     }
 
     sleep(5);
@@ -90,8 +90,8 @@ function startParser($url) {
     $content = 'Parser is worked';
     file_put_contents(PARSER_PATH.PARSER_LOCK_FILE, $content);
 
-    $cmd = 'node ' .PARSER_PATH. ' index.js ' .$url;
-    echo "Starting parser with command: $cmd";
+    $cmd = 'node ' .PARSER_PATH. 'index.js ' .$url;
+    echo "<br>Starting parser with command: $cmd";
 //    var_dump(shell_exec($cmd));
 
 }
@@ -102,7 +102,7 @@ function startApi() {
     file_put_contents(API_PATH.API_LOCK_FILE, $content);
 
     $cmd = 'php '.API_PATH. 'main.php';
-    echo "Starting api with command: $cmd";
+    echo "<br>Starting api with command: $cmd";
 //    var_dump(shell_exec($cmd));
 
 }
