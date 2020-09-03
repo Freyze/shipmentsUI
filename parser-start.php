@@ -9,7 +9,7 @@
     <br />
     <label>Start url</label>
     <br />
-    <input type="text" name="business-id" size="150" required>
+    <input type="text" name="start-url" size="150" required>
     <br />
     <input type="checkbox" name="rewrite-files" value="enable"> Исключить НДС
     <br />
@@ -49,8 +49,19 @@ define('API_LOCK_FILE', 'api.lock');
 if (isset($_POST['stop'])) {
 
     if ($_POST['stop'] == "stop") {
-        unlink(PARSER_PATH.PARSER_LOCK_FILE);
-        unlink(API_PATH.API_LOCK_FILE);
+
+        if (unlink(PARSER_PATH.PARSER_LOCK_FILE) == false) {
+            echo "<br>Парсер будет остановлен в ближайшие пару минут!";
+        } else {
+            echo "<br>Парсер не запущен!";
+        }
+
+        if (unlink(API_PATH.API_LOCK_FILE) == false)  {
+            echo "<br>Залив на API lardi-trans будет остановлен в ближайшие пару минут!";
+        } else {
+            echo "<br>Залив на API lardi-trans запущен!";
+        }
+        
     }
 
 }
@@ -71,7 +82,7 @@ if (isset($_POST['start-url'])) {
     sleep(5);
 
     startApi();
-    
+
 }
 
 function startParser($url) {
