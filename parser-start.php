@@ -15,7 +15,7 @@
     <br />
     <input type="checkbox" name="rewrite-files" value="enable"> Исключить безнал
     <br />
-    <input type="submit" value="Загрузить">
+    <input type="submit" value="Start">
 
 </form>
 
@@ -88,8 +88,8 @@ function startApi() {
 
     echo shell_exec('cd '.API_PATH);
 
-    $content = 'Parser is worked';
-    file_put_contents(PARSER_PATH.PARSER_LOCK_FILE, $content);
+    $content = 'API is worked';
+    file_put_contents(API_PATH.API_LOCK_FILE, $content);
 
     echo shell_exec('php main.php');
 }
