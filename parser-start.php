@@ -87,24 +87,22 @@ if (isset($_POST['start-url'])) {
 
 function startParser($url) {
 
-    echo shell_exec('cd '.PARSER_PATH);
-
     $content = 'Parser is worked';
     file_put_contents(PARSER_PATH.PARSER_LOCK_FILE, $content);
 
-    echo "Starting parser...";
-    echo shell_exec('node index.js '.$url);
+    $cmd = 'node ' .PARSER_PATH. ' index.js ' .$url;
+    echo "Starting parser with command: $cmd";
+    var_dump(shell_exec($cmd));
 
 }
 
 function startApi() {
 
-    echo shell_exec('cd '.API_PATH);
-
     $content = 'API is worked';
     file_put_contents(API_PATH.API_LOCK_FILE, $content);
 
-    echo "Starting api...";
-    echo shell_exec('php main.php');
+    $cmd = 'php '.API_PATH. 'main.php';
+    echo "Starting api with command: $cmd";
+    var_dump(shell_exec($cmd));
 
 }
