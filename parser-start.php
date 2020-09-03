@@ -92,7 +92,7 @@ function startParser($url) {
 
     $cmd = 'node ' .PARSER_PATH. ' index.js ' .$url;
     echo "Starting parser with command: $cmd";
-    var_dump(shell_exec($cmd));
+//    var_dump(shell_exec($cmd));
 
 }
 
@@ -103,6 +103,6 @@ function startApi() {
 
     $cmd = 'php '.API_PATH. 'main.php';
     echo "Starting api with command: $cmd";
-    var_dump(shell_exec($cmd));
+//    var_dump(shell_exec($cmd));
 
 }
