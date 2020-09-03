@@ -93,7 +93,7 @@ function startParser($url) {
     file_put_contents(PARSER_PATH.PARSER_LOCK_FILE, $content);
 
     echo "Starting parser...";
-    shell_exec('node index.js '.$url);
+    echo shell_exec('node index.js '.$url);
 
 }
 
@@ -105,6 +105,6 @@ function startApi() {
     file_put_contents(API_PATH.API_LOCK_FILE, $content);
 
     echo "Starting api...";
-    shell_exec('php main.php');
+    echo shell_exec('php main.php');
 
 }
