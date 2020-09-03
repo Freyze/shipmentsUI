@@ -50,18 +50,18 @@ if (isset($_POST['stop'])) {
 
     if ($_POST['stop'] == "stop") {
 
-        if (unlink(PARSER_PATH.PARSER_LOCK_FILE) == false) {
+        if (unlink(PARSER_PATH.PARSER_LOCK_FILE)) {
             echo "<br>Парсер будет остановлен в ближайшие пару минут!";
         } else {
             echo "<br>Парсер не запущен!";
         }
 
-        if (unlink(API_PATH.API_LOCK_FILE) == false)  {
+        if (unlink(API_PATH.API_LOCK_FILE))  {
             echo "<br>Залив на API lardi-trans будет остановлен в ближайшие пару минут!";
         } else {
             echo "<br>Залив на API lardi-trans запущен!";
         }
-        
+
     }
 
 }
