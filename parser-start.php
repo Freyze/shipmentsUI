@@ -79,8 +79,7 @@ if (isset($_POST['start-url'])) {
         exit("<br>Invalid start url!");
     }
 
-    sleep(5);
-
+    sleep(10);
     startApi();
 
 }
@@ -93,13 +92,12 @@ function startParser($url) {
     $timeNow = time();
     $cmd = 'START /B node ' .PARSER_PATH. 'index.js ' .$url. " > parse_log_$timeNow.txt";
     echo "<br>Starting parser with command: $cmd";
-//    passthru($cmd);
 
-    $handle = popen($cmd, 'r');
-    echo "'$handle'; " . gettype($handle) . "\n";
-    $read = fread($handle, 2096);
-    echo $read;
-    pclose($handle);
+    return $handle = popen($cmd, 'r');
+//    echo "'$handle'; " . gettype($handle) . "\n";
+//    $read = fread($handle, 2096);
+//    echo $read;
+//    pclose($handle);
 }
 
 function startApi() {
@@ -107,8 +105,10 @@ function startApi() {
     $content = 'API is worked';
     file_put_contents(API_PATH.API_LOCK_FILE, $content);
 
-    $cmd = 'php '.API_PATH. 'main.php';
+    $timeNow = time();
+    $cmd = 'START /B php '.API_PATH. "main.php > api_log_$timeNow.txt";
     echo "<br>Starting api with command: $cmd";
 //    var_dump(shell_exec($cmd));
+    return $handle = popen($cmd, 'r');
 
 }
