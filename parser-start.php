@@ -90,9 +90,9 @@ function startParser($url) {
     $content = 'Parser is worked';
     file_put_contents(PARSER_PATH.PARSER_LOCK_FILE, $content);
 
-    $cmd = 'node ' .PARSER_PATH. 'index.js ' .$url;
+    $cmd = 'start /min node ' .PARSER_PATH. 'index.js ' .$url;
     echo "<br>Starting parser with command: $cmd";
-//    var_dump(shell_exec($cmd));
+    var_dump(shell_exec($cmd));
 
 }
 
