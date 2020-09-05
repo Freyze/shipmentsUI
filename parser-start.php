@@ -90,10 +90,10 @@ function startParser($url) {
     file_put_contents(PARSER_PATH.PARSER_LOCK_FILE, $content);
 
     $timeNow = time();
-    $cmd = 'START /B node ' .PARSER_PATH. 'index.js ' .$url. " > parse_log_$timeNow.txt";
+    $cmd = 'START /b node ' .PARSER_PATH. 'index.js ' .$url. " > parse_log_$timeNow.txt";
     echo "<br>Starting parser with command: $cmd";
 
-    return $handle = popen($cmd, 'r');
+    pclose(popen($cmd, 'r'));
 //    echo "'$handle'; " . gettype($handle) . "\n";
 //    $read = fread($handle, 2096);
 //    echo $read;
@@ -106,9 +106,9 @@ function startApi() {
     file_put_contents(API_PATH.API_LOCK_FILE, $content);
 
     $timeNow = time();
-    $cmd = 'START /B php '.API_PATH. "main.php > api_log_$timeNow.txt";
+    $cmd = 'START /b php '.API_PATH. "main.php > api_log_$timeNow.txt";
     echo "<br>Starting api with command: $cmd";
 //    var_dump(shell_exec($cmd));
-    return $handle = popen($cmd, 'r');
+    pclose(popen($cmd, 'r'));
 
 }
