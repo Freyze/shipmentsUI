@@ -92,8 +92,13 @@ function startParser($url) {
 
     $cmd = 'node ' .PARSER_PATH. 'index.js ' .$url;
     echo "<br>Starting parser with command: $cmd";
-    passthru($cmd);
+//    passthru($cmd);
 
+    $handle = popen($cmd.' 2>&1', 'r');
+    echo "'$handle'; " . gettype($handle) . "\n";
+    $read = fread($handle, 2096);
+    echo $read;
+    pclose($handle);
 }
 
 function startApi() {
