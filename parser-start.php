@@ -90,11 +90,12 @@ function startParser($url) {
     $content = 'Parser is worked';
     file_put_contents(PARSER_PATH.PARSER_LOCK_FILE, $content);
 
-    $cmd = 'node ' .PARSER_PATH. 'index.js ' .$url;
+    $timeNow = time();
+    $cmd = 'START /B node ' .PARSER_PATH. 'index.js ' .$url. " > parse_log_$timeNow.txt";
     echo "<br>Starting parser with command: $cmd";
 //    passthru($cmd);
 
-    $handle = popen($cmd.' 2>&1', 'r');
+    $handle = popen($cmd, 'r');
     echo "'$handle'; " . gettype($handle) . "\n";
     $read = fread($handle, 2096);
     echo $read;
