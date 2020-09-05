@@ -59,7 +59,7 @@ if (isset($_POST['stop'])) {
         if (unlink(API_PATH.API_LOCK_FILE))  {
             echo "<br>Залив на API lardi-trans будет остановлен в ближайшие пару минут!";
         } else {
-            echo "<br>Залив на API lardi-trans запущен!";
+            echo "<br>Залив на API lardi-trans не запущен!";
         }
 
     }
@@ -92,7 +92,7 @@ function startParser($url) {
 
     $cmd = 'node ' .PARSER_PATH. 'index.js ' .$url;
     echo "<br>Starting parser with command: $cmd";
-    system($cmd);
+    passthru($cmd);
 
 }
 
