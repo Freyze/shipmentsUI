@@ -93,7 +93,7 @@ function startParser($url) {
     $cmd = 'START /b node ' .PARSER_PATH. 'index.js ' .$url. " > parse_log_$timeNow.txt";
     echo "<br>Starting parser with command: $cmd";
 
-    pclose(popen($cmd, 'r'));
+    popen($cmd, 'r');
 //    echo "'$handle'; " . gettype($handle) . "\n";
 //    $read = fread($handle, 2096);
 //    echo $read;
@@ -109,6 +109,6 @@ function startApi() {
     $cmd = 'START /b php '.API_PATH. "main.php > api_log_$timeNow.txt";
     echo "<br>Starting api with command: $cmd";
 //    var_dump(shell_exec($cmd));
-    pclose(popen($cmd, 'r'));
+    popen($cmd, 'r');
 
 }
