@@ -62,7 +62,6 @@ function getShipmentByParams($conn, $inputGet, $offset) {
 
     }
 
-    // Отображаем всё, если нет параметров для поиска
     if (isEmpty($_GET["id"])) {
 
         $date = date("m/d/Y");
@@ -82,7 +81,7 @@ function getShipmentByParams($conn, $inputGet, $offset) {
                 GROUP BY `shipment_id`
                 ORDER BY `shipments`.`id` DESC
                 LIMIT $offset, 25";
-//    echo $selectSQL;
+    echo $selectSQL;
     $selectResult = $conn->query($selectSQL);
 
     if ($selectResult) {
