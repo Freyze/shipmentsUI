@@ -70,7 +70,7 @@ function getShipmentByParams($conn, $inputGet, $offset) {
         $diff = $timeNow - $unixTime;
 
 //        $dayInSeconds = 86400;
-        $selectWhereSQL = " $timeNow - `last_update_time` < $diff ";
+        $selectWhereSQL .= " $timeNow - `last_update_time` < $diff ";
     }
 
     $selectSQL = "
