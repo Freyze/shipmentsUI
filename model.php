@@ -63,10 +63,15 @@ function getShipmentByParams($conn, $inputGet, $offset) {
     }
 
     // Отображаем всё, если нет параметров для поиска
-    if (empty($selectWhereSQL)) {
+    if (isEmpty($_GET["id"])) {
+
+        $date = date("m/d/Y");
+        $unixTime = strtotime($date);
         $timeNow = time();
-        $dayInSeconds = 86400;
-        $selectWhereSQL = " $timeNow - `last_update_time` < $dayInSeconds ";
+        $diff = $timeNow - $unixTime;
+
+//        $dayInSeconds = 86400;
+        $selectWhereSQL = " $timeNow - `last_update_time` < $diff ";
     }
 
     $selectSQL = "
