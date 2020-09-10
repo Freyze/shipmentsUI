@@ -74,13 +74,13 @@ if (isset($_POST['start-url'])) {
     // https://regex101.com/r/KD74tO/1
     $urlPattern = '/della\.ua\/search\/[^\.]+[0-9]+l100\.html/';
     if (preg_match($urlPattern, $_POST['start-url'])) {
-        startParser($_POST['start-url']);
+//        startParser($_POST['start-url']);
+//        sleep(10);
+        startApi();
     } else {
         exit("<br>Invalid start url!");
     }
 
-    sleep(10);
-    startApi();
 
 }
 
@@ -90,10 +90,14 @@ function startParser($url) {
     file_put_contents(PARSER_PATH.PARSER_LOCK_FILE, $content);
 
     $timeNow = time();
-    $cmd = 'START /b node ' .PARSER_PATH. 'index.js ' .$url. " > parse_log_$timeNow.txt";
+    $cmd = '"START /b node ' .PARSER_PATH. 'index.js ' .$url. ' > parse_log_'.$timeNow.'.txt"';
     echo "<br>Starting parser with command: $cmd";
 
-    popen($cmd, 'r');
+//    popen($cmd, 'r');
+
+    $descriptorspec = [STDIN, STDOUT, STDOUT];
+    $proc = proc_open($cmd, $descriptorspec, $pipes);
+//    proc_close($proc);
 //    echo "'$handle'; " . gettype($handle) . "\n";
 //    $read = fread($handle, 2096);
 //    echo $read;
@@ -106,9 +110,12 @@ function startApi() {
     file_put_contents(API_PATH.API_LOCK_FILE, $content);
 
     $timeNow = time();
-    $cmd = 'START /b php '.API_PATH. "main.php > api_log_$timeNow.txt";
+    $cmd = '"START /b php '.API_PATH. 'main.php > api_log_'.$timeNow.'.txt"';
     echo "<br>Starting api with command: $cmd";
 //    var_dump(shell_exec($cmd));
-    popen($cmd, 'r');
+//    popen($cmd, 'r');
+
+    $descriptorspec = [STDIN, STDOUT, STDOUT];
+    $proc = proc_open($cmd, $descriptorspec, $pipes);
 
 }
