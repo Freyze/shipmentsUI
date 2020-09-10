@@ -77,6 +77,10 @@ if (isset($_POST['start-url'])) {
 //        startParser($_POST['start-url']);
 //        sleep(10);
         startApi();
+
+//        while (true) {
+            sleep(3600);
+//        }
     } else {
         exit("<br>Invalid start url!");
     }
