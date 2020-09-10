@@ -95,7 +95,11 @@ function startParser($url) {
 
 //    popen($cmd, 'r');
 
-    $descriptorspec = [STDIN, STDOUT, STDOUT];
+    $descriptorspec = array(
+        array("pipe","r"),
+        array("pipe","w"),
+        array("pipe","w")
+    );
     $proc = proc_open($cmd, $descriptorspec, $pipes);
 //    proc_close($proc);
 //    echo "'$handle'; " . gettype($handle) . "\n";
@@ -115,7 +119,11 @@ function startApi() {
 //    var_dump(shell_exec($cmd));
 //    popen($cmd, 'r');
 
-    $descriptorspec = [STDIN, STDOUT, STDOUT];
+    $descriptorspec = array(
+        array("pipe","r"),
+        array("pipe","w"),
+        array("pipe","w")
+    );
     $proc = proc_open($cmd, $descriptorspec, $pipes);
 
 }
