@@ -68,7 +68,7 @@ if (isset($_POST['stop'])) {
 
 if (isset($_POST['start-url'])) {
 
-    if (file_exists(PARSER_PATH.PARSER_LOCK_FILE)) exit("<br>Парсер уже запущен! Сначала его необходимо остановить!");
+//    if (file_exists(PARSER_PATH.PARSER_LOCK_FILE)) exit("<br>Парсер уже запущен! Сначала его необходимо остановить!");
     if (file_exists(API_PATH.API_LOCK_FILE)) exit("<br>Залив на API уже запущен! Сначала его необходимо остановить!");
 
     // https://regex101.com/r/KD74tO/1
